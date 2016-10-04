@@ -1,24 +1,7 @@
-# README
+# Idea Box  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### Description    
 
-Things you may want to cover:
+Idea Box is a Rails application created to manage data related to our ideas and serve initial UI templates. It utilizes JavaScript with (jQuery and AJAX) to manage client-side interactions and communicate asynchronously with the server. All AJAX is triggered by jQuery.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The application consists of one HTML page.
