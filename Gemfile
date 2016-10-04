@@ -10,6 +10,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'figaro'
 gem 'faraday'
+gem "responders"
+
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 # gem 'capistrano-rails', group: :development
