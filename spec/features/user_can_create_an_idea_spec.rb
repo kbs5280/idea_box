@@ -6,10 +6,10 @@ describe 'User can create an idea', type: :feature do
     visit root_path
 
     fill_in 'title', with: 'Test Title One'
-    fill_in 'idea', with: 'Test Idea One'
+    fill_in 'idea', with: 'Test idea one'
     click_button 'Save'
 
     expect(page).to have_content 'Test Title One'
-    expect(page).to have_content 'Test Idea One'
+    expect(page).to have_content 'Test idea one'
   end
 end
