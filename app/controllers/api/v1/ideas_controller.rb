@@ -1,6 +1,7 @@
 class Api::V1::IdeasController < ApplicationController
   def index
-    respond_with = Idea.all
+    ideas = Idea.all
+    respond_with ideas
   end
 
   def create
@@ -14,7 +15,7 @@ class Api::V1::IdeasController < ApplicationController
 
   private
 
-  def idea_params
-    params.permit(:title, :body, :quanlity, :created_at, :updated_at)
-  end
+    def idea_params
+      params.require(:idea).permit(:title, :body, :quantity)
+    end
 end
