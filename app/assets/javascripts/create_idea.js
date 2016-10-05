@@ -23,10 +23,7 @@ $(document).ready(function() {
       $.ajax({
         url: "api/v1/ideas",
         data: ideaParams,
-        type: "POST" // removed trailing comma
-        // success: function(data){ //this function is the same and .then(createIdeaHTML) passing data implicitly
-        //   createIdeaHTML(data);
-        // };
+        type: "POST"
       }).then(createIdeaHTML)
       .then(renderIdea)
       .then(resetFormValues)
