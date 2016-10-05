@@ -11,7 +11,9 @@ describe 'Ideas API controller' do
                                   }
 
     expect(response).to be_success
+    
     expect(json[:title]).to eq 'Test Title One'
     expect(json[:body]).to eq 'Test idea one'
+    expect(json.count).to eq 6
   end
 end

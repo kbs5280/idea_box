@@ -8,7 +8,7 @@ describe 'Ideas API controller' do
     get '/api/v1/ideas'
 
     expect(response).to be_success
-    expect(json.count).to eq 10
+
     expect(json.first[:title]).to eq ideas.first.title
   end
 end

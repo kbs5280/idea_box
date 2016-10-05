@@ -16,7 +16,6 @@ gem "responders"
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 # gem 'capistrano-rails', group: :development
 
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
@@ -30,6 +29,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'faker'
+  gem 'selenium-webdriver'
 end
 
 group :development do
