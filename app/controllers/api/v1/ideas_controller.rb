@@ -26,7 +26,15 @@ class Api::V1::IdeasController < ApplicationController
         respond_with idea
       end
     elsif params[:idea][:vote] == "downvote"
-      #downvote idea
+      if idea.quality == 'swill'
+        respond_with idea
+      elsif idea.quality == 'plausible'
+        idea.update(quality: 'swill')
+        respond_with idea
+      elsif idea.quality == 'genius'
+        idea.update(quality: 'plausible')
+        respond_with idea
+      end
     end
   end
 
