@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   createIdea();
   fetchIdeas();
+  upVoteIdea();
   deleteIdea();
 
 });
@@ -28,6 +29,7 @@ $(document).ready(function() {
         // };
       }).then(createIdeaHTML)
       .then(renderIdea)
+      .then(resetFormValues)
       //.fail(handleError)
     })
   }
@@ -39,14 +41,27 @@ $(document).ready(function() {
     + ideaData.title
     + "</h3><p>"
     + ideaData.body
+    + "</p><p>"
+    + ideaData.quality
     + "</p>"
-    + "<button id='delete-idea' name='button-fetch'"
+    + "<button id='upvote-idea' name='button-upvote'"
+    + "class='btn btn-default btn-xs'>Upvote</button>"
+    + "<br>"
+    + "<button id='downvote-idea' name='button-downvote'"
+    + "class='btn btn-default btn-xs'>Downvote</button>"
+    + "<br>"
+    + "<button id='delete-idea' name='button-delete'"
     + "class='btn btn-default btn-xs'>Delete</button>"
     + "</div>")
   }
 
   function renderIdea( ideaData ) {
     $("#latest-ideas").append(ideaData);
+  }
+
+  function resetFormValues() {
+    $("#idea-title").val('')
+    $("#idea-body").val('')
   }
 
   function fetchIdeas() {
@@ -75,4 +90,24 @@ $(document).ready(function() {
          $idea.remove()
        })//.fail(handleError)
      })
+   }
+
+  function upVoteIdea(){
+    var upVote = {
+      idea: {
+        vote: "upvote"
+      }
+    }
+     $("#latest-ideas").on("click", "#upvote-idea", function(){
+       var $idea = $(this).closest(".idea")
+       $.ajax({
+         url: "api/v1/ideas/" + $idea.data("id") + ".json",
+         data: upVote,
+         method: "PUT"
+       }).then(wipeIdeas).then(fetchIdeas)
+     })
+   }
+
+   function wipeIdeas() {
+     $(".idea").remove();
    }

@@ -13,6 +13,23 @@ class Api::V1::IdeasController < ApplicationController
     end
   end
 
+  def update
+    idea = Idea.find(params[:id])
+    if params[:idea][:vote] == "upvote"
+      if idea.quality == 2
+        respond_with idea
+      elsif idea.quality == 1
+        idea.update(quality: 2)
+        respond_with idea
+      elsif idea.quality == 0
+        idea.update(quality: 1)
+        respond_with idea
+      end 
+    elsif params[:idea][:vote] == "downvote"
+      #downvote idea
+    end
+  end
+
   def destroy
     item = Idea.destroy(params[:id])
   end
