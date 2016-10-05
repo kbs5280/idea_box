@@ -16,17 +16,25 @@ class Api::V1::IdeasController < ApplicationController
   def update
     idea = Idea.find(params[:id])
     if params[:idea][:vote] == "upvote"
-      if idea.quality == 2
+      if idea.quality == 'genius'
         respond_with idea
-      elsif idea.quality == 1
-        idea.update(quality: 2)
+      elsif idea.quality == 'plausible'
+        idea.update(quality: 'genius')
         respond_with idea
-      elsif idea.quality == 0
-        idea.update(quality: 1)
+      elsif idea.quality == 'swill'
+        idea.update(quality: 'plausible')
         respond_with idea
-      end 
+      end
     elsif params[:idea][:vote] == "downvote"
-      #downvote idea
+      if idea.quality == 'swill'
+        respond_with idea
+      elsif idea.quality == 'plausible'
+        idea.update(quality: 'swill')
+        respond_with idea
+      elsif idea.quality == 'genius'
+        idea.update(quality: 'plausible')
+        respond_with idea
+      end
     end
   end
 
@@ -37,6 +45,6 @@ class Api::V1::IdeasController < ApplicationController
   private
 
     def idea_params
-      params.require(:idea).permit(:title, :body, :quantity)
+      params.require(:idea).permit(:title, :body, :quality)
     end
 end
