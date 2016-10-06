@@ -1,7 +1,6 @@
 class Idea < ApplicationRecord
 
    def self.check_params(params, idea)
-     require "pry"; binding.pry
     if params[:idea][:title]
       idea.update(title: params[:idea][:title])
     elsif params[:idea][:body]
