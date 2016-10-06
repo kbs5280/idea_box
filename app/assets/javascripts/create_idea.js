@@ -28,18 +28,20 @@
     + "'><h3> Title:"
     + "</h3><h3 id='title' contenteditable='true'>"
     + ideaData.title
+    + "</h3><br><h3>Quality:"
+    + "</h3><p>"
+    + ideaData.quality
+    + "</p><h3> Body:"
     + "</h3><p id='body' contenteditable='true'>"
     + ideaData.body
-    + "</p><p>"
-    + ideaData.quality
     + "</p>"
-    + "<button id='upvote-idea' name='button-upvote'"
+    + "<button id='upvote-idea' name='button-upvote' class='btn btn-primary btn-md'"
     + "class='btn btn-default btn-xs'>Upvote</button>"
-    + "<br>"
-    + "<button id='downvote-idea' name='button-downvote'"
+    + "<br><br>"
+    + "<button id='downvote-idea' name='button-downvote' class='btn btn-primary btn-md'"
     + "class='btn btn-default btn-xs'>Downvote</button>"
-    + "<br>"
-    + "<button id='delete-idea' name='button-delete'"
+    + "<br><br>"
+    + "<button id='delete-idea' name='button-delete' class='btn btn-primary btn-md'"
     + "class='btn btn-default btn-xs'>Delete</button>"
     + "</div>")
   }
