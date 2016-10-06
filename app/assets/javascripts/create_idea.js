@@ -26,24 +26,22 @@
     return $("<div class='idea' data-id='"
     + ideaData.id
     + "'><h3> Title:"
-    + "</h3><h3 id='title' contenteditable='true'>"
+    + "</h3><p id='title' contenteditable='true'>"
     + ideaData.title
-    + "</h3><br><h3>Quality:"
+    + "</p><h3>Quality:"
     + "</h3><p>"
     + ideaData.quality
+    + "<br><button id='upvote-idea' name='button-upvote' class='btn btn-primary btn-md'"
+    + "class='btn btn-default btn-xs'>Upvote</button>"
+    + "<button id='downvote-idea' name='button-downvote' class='btn btn-primary btn-md'"
+    + "class='btn btn-default btn-xs'>Downvote</button>"
     + "</p><h3> Body:"
     + "</h3><p id='body' contenteditable='true'>"
     + ideaData.body
     + "</p>"
-    + "<button id='upvote-idea' name='button-upvote' class='btn btn-primary btn-md'"
-    + "class='btn btn-default btn-xs'>Upvote</button>"
-    + "<br><br>"
-    + "<button id='downvote-idea' name='button-downvote' class='btn btn-primary btn-md'"
-    + "class='btn btn-default btn-xs'>Downvote</button>"
-    + "<br><br>"
     + "<button id='delete-idea' name='button-delete' class='btn btn-primary btn-md'"
     + "class='btn btn-default btn-xs'>Delete</button>"
-    + "</div>")
+    + "</div><br><br>")
   }
 
   function renderIdea( ideaData ) {
