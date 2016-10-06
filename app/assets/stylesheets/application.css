@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.hero {
+  padding: 25px;
+}
+
+.wrap {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
