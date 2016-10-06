@@ -5,6 +5,8 @@ $(document).ready(function() {
   upVoteIdea();
   downVoteIdea();
   deleteIdea();
+  updateTitle();
+  updateBody();
 
 });
 
@@ -35,9 +37,10 @@ $(document).ready(function() {
   function createIdeaHTML( ideaData ) {
     return $("<div class='idea' data-id='"
     + ideaData.id
-    + "'><h3> Title: "
+    + "'><h3> Title:"
+    + "</h3><h3 id='title' contenteditable='true'>"
     + ideaData.title
-    + "</h3><p>"
+    + "</h3><p id='body' contenteditable='true'>"
     + ideaData.body
     + "</p><p>"
     + ideaData.quality
@@ -117,6 +120,45 @@ $(document).ready(function() {
        $.ajax({
          url: "api/v1/ideas/" + $idea.data("id") + ".json",
          data: downVote,
+         method: "PUT"
+       }).then(wipeIdeas).then(fetchIdeas)
+     })
+   }
+
+   function updateTitle() {
+     $("#latest-ideas").on("blur", "#title", function(){
+       var $idea = $(this).closest(".idea")
+       var title = $(this).parent().find("#title").html()
+
+       var updateTitle = {
+         idea: {
+           title: title
+         }
+       }
+
+       $.ajax({
+         url: "api/v1/ideas/" + $idea.data("id") + ".json",
+         data: updateTitle,
+         method: "PUT"
+       }).then(wipeIdeas).then(fetchIdeas)
+       console.log("Should be refreshed")
+     })
+   }
+
+   function updateBody() {
+     $("#latest-ideas").on("blur", "#body", function(){
+       var $idea = $(this).closest(".idea")
+       var body = $(this).parent().find("#body").html()
+
+       var updateBody = {
+         idea: {
+           body: body
+         }
+       }
+
+       $.ajax({
+         url: "api/v1/ideas/" + $idea.data("id") + ".json",
+         data: updateBody,
          method: "PUT"
        }).then(wipeIdeas).then(fetchIdeas)
      })
