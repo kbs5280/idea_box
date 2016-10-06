@@ -15,7 +15,13 @@ class Api::V1::IdeasController < ApplicationController
 
   def update
     idea = Idea.find(params[:id])
-    if params[:idea][:vote] == "upvote"
+    if params[:idea][:title]
+      idea.update(title: params[:idea][:title])
+      respond_with idea
+    elsif params[:idea][:body]
+      idea.update(body: params[:idea][:body])
+      respond_with idea
+    elsif params[:idea][:vote] == "upvote"
       if idea.quality == 'genius'
         respond_with idea
       elsif idea.quality == 'plausible'
