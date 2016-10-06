@@ -5,7 +5,8 @@ $(document).ready(function() {
   upVoteIdea();
   downVoteIdea();
   deleteIdea();
-  updateIdea();
+  updateTitle();
+  updateBody();
 
 });
 
@@ -39,7 +40,7 @@ $(document).ready(function() {
     + "'><h3> Title:"
     + "</h3><h3 id='title' contenteditable='true'>"
     + ideaData.title
-    + "</h3><p>"
+    + "</h3><p id='body' contenteditable='true'>"
     + ideaData.body
     + "</p><p>"
     + ideaData.quality
@@ -124,7 +125,7 @@ $(document).ready(function() {
      })
    }
 
-   function updateIdea() {
+   function updateTitle() {
      $("#latest-ideas").on("blur", "#title", function(){
        var $idea = $(this).closest(".idea")
        var title = $(this).parent().find("#title").html()
@@ -141,6 +142,25 @@ $(document).ready(function() {
          method: "PUT"
        }).then(wipeIdeas).then(fetchIdeas)
        console.log("Should be refreshed")
+     })
+   }
+
+   function updateBody() {
+     $("#latest-ideas").on("blur", "#body", function(){
+       var $idea = $(this).closest(".idea")
+       var body = $(this).parent().find("#body").html()
+
+       var updateBody = {
+         idea: {
+           body: body
+         }
+       }
+
+       $.ajax({
+         url: "api/v1/ideas/" + $idea.data("id") + ".json",
+         data: updateBody,
+         method: "PUT"
+       }).then(wipeIdeas).then(fetchIdeas)
      })
    }
 
