@@ -1,15 +1,3 @@
-$(document).ready(function() {
-
-  createIdea();
-  fetchIdeas();
-  upVoteIdea();
-  downVoteIdea();
-  deleteIdea();
-  updateTitle();
-  updateBody();
-
-});
-
   function createIdea() {
     $("#create-idea").on("click", function(event) {
       event.preventDefault();
@@ -30,7 +18,7 @@ $(document).ready(function() {
       }).then(createIdeaHTML)
       .then(renderIdea)
       .then(resetFormValues)
-      //.fail(handleError)
+      .fail(handleError)
     })
   }
 
@@ -57,113 +45,5 @@ $(document).ready(function() {
   }
 
   function renderIdea( ideaData ) {
-    $("#latest-ideas").append(ideaData);
+    $("#latest-ideas").prepend(ideaData);
   }
-
-  function resetFormValues() {
-    $("#idea-title").val('')
-    $("#idea-body").val('')
-  }
-
-  function fetchIdeas() {
-    $.ajax({
-      url: "api/v1/ideas",
-      type: "GET"
-    }).then(collectIdeas)
-    .then(renderIdeas)
-  }
-
-  function collectIdeas( ideasData ) {
-    return ideasData.map(createIdeaHTML);
-  }
-
-  function renderIdeas( ideasData ) {
-    $("#latest-ideas").html(ideasData);
-  }
-
-  function deleteIdea(){
-     $("#latest-ideas").on("click", "#delete-idea", function(){
-       var $idea = $(this).closest(".idea")
-       $.ajax({
-         url: "api/v1/ideas/" + $idea.data("id") + ".json",
-         method: "DELETE"
-       }).then( function(){
-         $idea.remove()
-       })//.fail(handleError)
-     })
-   }
-
-  function upVoteIdea(){
-    var upVote = {
-      idea: {
-        vote: "upvote"
-      }
-    }
-     $("#latest-ideas").on("click", "#upvote-idea", function(){
-       var $idea = $(this).closest(".idea")
-       $.ajax({
-         url: "api/v1/ideas/" + $idea.data("id") + ".json",
-         data: upVote,
-         method: "PUT"
-       }).then(wipeIdeas).then(fetchIdeas)
-     })
-   }
-
-  function downVoteIdea(){
-    var downVote = {
-      idea: {
-        vote: "downvote"
-      }
-    }
-     $("#latest-ideas").on("click", "#downvote-idea", function(){
-       var $idea = $(this).closest(".idea")
-       $.ajax({
-         url: "api/v1/ideas/" + $idea.data("id") + ".json",
-         data: downVote,
-         method: "PUT"
-       }).then(wipeIdeas).then(fetchIdeas)
-     })
-   }
-
-   function updateTitle() {
-     $("#latest-ideas").on("blur", "#title", function(){
-       var $idea = $(this).closest(".idea")
-       var title = $(this).parent().find("#title").html()
-
-       var updateTitle = {
-         idea: {
-           title: title
-         }
-       }
-
-       $.ajax({
-         url: "api/v1/ideas/" + $idea.data("id") + ".json",
-         data: updateTitle,
-         method: "PUT"
-       }).then(wipeIdeas).then(fetchIdeas)
-       console.log("Should be refreshed")
-     })
-   }
-
-   function updateBody() {
-     $("#latest-ideas").on("blur", "#body", function(){
-       var $idea = $(this).closest(".idea")
-       var body = $(this).parent().find("#body").html()
-
-       var updateBody = {
-         idea: {
-           body: body
-         }
-       }
-
-       $.ajax({
-         url: "api/v1/ideas/" + $idea.data("id") + ".json",
-         data: updateBody,
-         method: "PUT"
-       }).then(wipeIdeas).then(fetchIdeas)
-     })
-   }
-
-   function wipeIdeas() {
-     $(".idea").remove();
-   }
