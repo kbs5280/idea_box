@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'figaro'
 gem 'faraday'
 gem "responders"
+gem 'faker'
 
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
@@ -28,7 +29,6 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
-  gem 'faker'
   gem 'selenium-webdriver'
 end
 
