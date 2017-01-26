@@ -1,4 +1,3 @@
-
   function fetchIdeas() {
     $.ajax({
       url: "api/v1/ideas",
