@@ -9,7 +9,7 @@ class Api::V1::IdeasController < ApplicationController
     if idea.save
       respond_with(idea, location: api_v1_ideas_path)
     else
-      respond_with idea.errors
+      respond_with :json => [{ :error => "An error was encountered while processing your photos. Please try again." }], :status => 304
     end
   end
 

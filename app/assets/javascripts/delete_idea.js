@@ -1,4 +1,4 @@
-  function deleteIdea(){
+   function deleteIdea(){
      $("#latest-ideas").on("click", "#delete-idea", function(){
        var $idea = $(this).closest(".idea")
        $.ajax({
