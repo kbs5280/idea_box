@@ -12,6 +12,7 @@ gem 'figaro'
 gem 'faraday'
 gem "responders"
 gem 'faker'
+gem 'rack-cors', :require => 'rack/cors'
 
 # gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
