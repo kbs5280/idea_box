@@ -1,4 +1,4 @@
-NOTE: _This project was originally built as a Turing School project over a couple of days. There are opportunites to refactor in the controllers and models. All of the JavaScript was written within days of learning JavaScript and is poorly written and disorganized. The general Rails application is functional and acceptable, but a new front end is being built in React. See [React-Box](https://github.com/kbs5280/react-box)
+NOTE: _This project was originally built as a Turing School project over a couple of days. There are opportunites to refactor in the controllers and models. All of the JavaScript was written within days of learning JavaScript and is poorly written and disorganized. The general Rails application is functional and acceptable, but a new front end is being built in React. See [React-Box](https://github.com/kbs5280/react-box)_
 
 # Idea Box  
 
