@@ -1,13 +1,15 @@
 class Idea < ApplicationRecord
 
    def self.check_params(params, idea)
-    if params[:idea][:title]
-      idea.update(title: params[:idea][:title])
-    elsif params[:idea][:body]
-      idea.update(body: params[:idea][:body])
-    elsif params[:idea][:vote] == "upvote"
+    if params[:title] && params[:body]
+      idea.update(title: params[:title], body: params[:body])
+    elsif params[:title]
+      idea.update(title: params[:title])
+    elsif params[:body]
+      idea.update(body: params[:body])
+    elsif params[:vote] == "upvote"
       check_upvote(idea)
-    elsif params[:idea][:vote] == "downvote"
+    elsif params[:vote] == "downvote"
       check_downvote(idea)
     end
   end
